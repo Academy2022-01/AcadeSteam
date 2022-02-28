@@ -1,14 +1,19 @@
 package it.unikey.acadesteam.DAL.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 public class ReportEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Type(type = "uuid-binary")
+    @GeneratedValue(generator = "myGUID")
+    @GenericGenerator(name = "myGUID", strategy = "uuid2")
+    @Column(name = "ID", length = 16, unique= true, nullable = false)
+    private UUID id;
+
 }

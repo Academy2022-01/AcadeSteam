@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Data
 
-public class GameDTO {
+public class GameDto {
     private UUID id;
     private String gameTitle;
     private String gamePath;

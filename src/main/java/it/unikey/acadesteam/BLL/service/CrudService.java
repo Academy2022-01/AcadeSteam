@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface CrudService<T> {
-    T insert(T entity);
+    T insert(T dto);
     T getById(UUID id) throws NotFoundException;
     List<T> getAll();
-    T update(T entity) throws NotFoundException;
+    T update(T dto) throws NotFoundException;
     void delete(UUID id) throws NotFoundException;
 }

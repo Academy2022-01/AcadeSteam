@@ -29,6 +29,9 @@ public class GameEntity {
 
     @ManyToOne
     private GameStateEntity gameState;
+
+    @ManyToOne
+    private LibraryEntity library;
 /*
     @ManyToOne
     private UserInfoEntity developer;

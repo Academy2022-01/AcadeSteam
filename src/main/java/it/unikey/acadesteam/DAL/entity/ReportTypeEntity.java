@@ -4,12 +4,12 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "REPORT")
-public class ReportEntity {
+@Table(name = "REPORT_TYPE")
+public class ReportTypeEntity {
 
     @Id
     @Type(type = "uuid-binary")
@@ -18,12 +18,9 @@ public class ReportEntity {
     @Column(name = "ID", length = 16, unique= true, nullable = false)
     private UUID id;
 
-    @Column(name = "DATE", nullable = false)
-    private LocalDate reportDate;
-
-    @Column(name = "DESCRIPTION", length = 500,  nullable = false)
+    @Column(name = "DESCRIPTION", unique = true, nullable = false)
     private String description;
 
-    @ManyToOne
-    private ReportTypeEntity reportType;
+    @OneToMany(mappedBy = "reportType", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<ReportEntity> reports;
 }

@@ -22,16 +22,14 @@ import java.util.UUID;
 public class RolesEntity {
 
     @Id
-    @Type(type = "uuid-binary")
-    @GeneratedValue(generator = "myGUID")
-    @GenericGenerator(name = "myGUID", strategy = "uuid2")
-    @Column(name = "ID", length = 16, unique= true, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     @Column(unique = true, nullable = false)
     private String description;
 
     @OneToMany(mappedBy = "roles", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ToString.Exclude
     private Set<UserEntity> userEntitySet;
 
     @Override

@@ -11,15 +11,12 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "Game")
+@Table(name = "GAMES")
 public class GameEntity {
 
     @Id
-    @Type(type = "uuid-binary")
-    @GeneratedValue(generator = "myGUID")
-    @GenericGenerator(name = "myGUID", strategy = "uuid2")
-    @Column(name = "ID", length = 16, unique= true, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     @Column(nullable = false, unique = true)
     private String gameTitle;

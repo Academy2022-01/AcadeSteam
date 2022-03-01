@@ -17,15 +17,12 @@ import java.util.UUID;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "USER")
+@Table(name = "USERS")
 public class UserEntity {
 
     @Id
-    @Type(type = "uuid-binary")
-    @GeneratedValue(generator = "GUID_USER")
-    @GenericGenerator(name = "GUID_USER", strategy = "uuid2")
-    @Column(name = "ID", length = 16, unique= true, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -40,6 +37,7 @@ public class UserEntity {
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ToString.Exclude
     /*@JoinColumn(name = "id_user", referencedColumnName = "id_roles")*/
     private RolesEntity roles;
 

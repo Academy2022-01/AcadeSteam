@@ -24,11 +24,8 @@ import java.util.UUID;
 public class ReviewEntity {
 
     @Id
-    @Type(type = "uuid-binary")
-    @GeneratedValue(generator = "myGUID")
-    @GenericGenerator(name = "myGUID", strategy = "uuid2")
-    @Column(name = "ID", length = 16, unique= true, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     @JoinColumn(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)

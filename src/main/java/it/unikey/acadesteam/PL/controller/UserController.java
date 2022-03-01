@@ -32,7 +32,7 @@ public class UserController {
     @GetMapping(path = "/{id}")
     private ResponseEntity<UserRest> findById(@PathVariable("id") UUID uuid) {
         try {
-            UserDTO dto = service.findById(uuid);
+            UserDTO dto = userService.findById(uuid);
             return new ResponseEntity<>(userRESTMapper.fromUserDTOToUserRest(dto), HttpStatus.OK);
         } catch (NotFoundException e) {
             e.printStackTrace();
@@ -45,7 +45,7 @@ public class UserController {
             @RequestParam("username") String userName
             )  {
         try {
-            UserDTO dto = service.findByUsername(userName);
+            UserDTO dto = userService.findByUsername(userName);
             return new ResponseEntity<UserRest>(userRESTMapper.fromUserDTOToUserRest(dto), HttpStatus.OK);
         } catch (NotFoundException e) {
             e.printStackTrace();
@@ -55,10 +55,13 @@ public class UserController {
 
     @PutMapping
     private ResponseEntity<UserRest> update(@RequestBody UserRest user) {
-        if(!userService.existsById(user.getId()))
-            UserDTO
-            return service.update(userRESTMapper.fromUserRestToUserDTO(user)
-            )
+        try {
+            UserDTO userUpdated = userService.update(userRESTMapper.fromUserRestToUserDTO(user));
+            return new ResponseEntity<>(userRESTMapper.fromUserDTOToUserRest(userUpdated), HttpStatus.OK);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 
     }
 
@@ -68,7 +71,7 @@ public class UserController {
         if (user.getId() != null)
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         try {
-            UserDTO userDTO = service.insert(user);
+            UserDTO userDTO = userService.insert(user);
             return new ResponseEntity<UserRest>(userRESTMapper.fromUserDTOToUserRest(userDTO), HttpStatus.CREATED);
         } catch (NotFoundException e) {
             e.printStackTrace();

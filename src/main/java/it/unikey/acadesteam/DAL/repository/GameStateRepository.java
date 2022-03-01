@@ -1,13 +1,11 @@
 package it.unikey.acadesteam.DAL.repository;
 
-import it.unikey.acadesteam.DAL.entity.UserEntity;
+import it.unikey.acadesteam.DAL.entity.GameStateEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, UUID> {
-
-    boolean existsByUUDD (UUID uuid);
+public interface GameStateRepository extends JpaRepository<GameStateEntity, UUID> {
 }

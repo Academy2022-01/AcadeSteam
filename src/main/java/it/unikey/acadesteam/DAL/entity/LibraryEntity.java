@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name= "LIBRARY")
+@Table(name = "LIBRARY")
 public class LibraryEntity {
 
 
@@ -19,18 +19,15 @@ public class LibraryEntity {
     @Type(type = "uuid-binary")
     @GeneratedValue(generator = "myGUID")
     @GenericGenerator(name = "myGUID", strategy = "uuid2")
-    @Column(name = "ID", length = 16, unique= true, nullable = false)
+    @Column(name = "ID", length = 16, unique = true, nullable = false)
     private UUID id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private GameEntity game;
 
-    @OneToMany(mappedBy = "library", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<GameEntity> game;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private UserInfoEntity usersInfo;
-
-
-
 
 
 }

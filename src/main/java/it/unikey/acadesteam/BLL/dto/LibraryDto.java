@@ -9,6 +9,6 @@ import java.util.UUID;
 @Data
 public class LibraryDto {
     private UUID id;
-    private UserInfoEntity userInfo;
-    private GameEntity games;
+    private UserInfoDto userInfo;
+    private GameDto games;
 }

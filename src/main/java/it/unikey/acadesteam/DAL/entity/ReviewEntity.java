@@ -18,7 +18,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "REVIEWS")
-public class ReviewsEntity {
+public class ReviewEntity {
 
     @Id
     @Type(type = "uuid-binary")
@@ -30,12 +30,12 @@ public class ReviewsEntity {
     @Column(name = "GAMES_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
-    private GamesEntity game;
+    private GameEntity game;
 
     @Column(name = "USERS_INFO_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
-    private UsersInfoEntity usersInfo;
+    private UserInfoEntity usersInfo;
 
     @Column(name = "VOTE_NUMBER", nullable = false, length = 1)
     @Min(0)
@@ -52,7 +52,7 @@ public class ReviewsEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        ReviewsEntity that = (ReviewsEntity) o;
+        ReviewEntity that = (ReviewEntity) o;
         return id != null && Objects.equals(id, that.id);
     }
 

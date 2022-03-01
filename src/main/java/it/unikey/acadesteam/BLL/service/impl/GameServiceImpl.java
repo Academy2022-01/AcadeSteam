@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class GameService  implements CrudService<GameDto> {
+public class GameServiceImpl implements CrudService<GameDto> {
     private final GameMapper mapper;
     private final GameRepository repository;
 

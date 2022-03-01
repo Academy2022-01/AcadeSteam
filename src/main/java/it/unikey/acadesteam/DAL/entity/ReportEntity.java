@@ -6,8 +6,6 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
@@ -17,8 +15,8 @@ import java.util.UUID;
 @ToString
 @RequiredArgsConstructor
 @Entity
-@Table(name = "REVIEWS")
-public class ReviewsEntity {
+@Table(name = "REPORTS")
+public class ReportEntity {
 
     @Id
     @Type(type = "uuid-binary")
@@ -27,32 +25,26 @@ public class ReviewsEntity {
     @Column(name = "ID", length = 16, unique= true, nullable = false)
     private UUID id;
 
-    @Column(name = "GAMES_ID", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    @ToString.Exclude
-    private GamesEntity game;
+    @Column(name = "DATE", nullable = false)
+    private LocalDate reportDate;
 
-    @Column(name = "USERS_INFO_ID", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    @ToString.Exclude
-    private UsersInfoEntity usersInfo;
-
-    @Column(name = "VOTE_NUMBER", nullable = false, length = 1)
-    @Min(0)
-    @Max(5)
-    private Integer voteNumber;
-
-    @Column(name = "DESCRIPTION", length = 1000)
+    @Column(name = "DESCRIPTION", length = 500,  nullable = false)
     private String description;
 
-    @Column(name = "REVIEW_DATE", nullable = false)
-    private LocalDate reviewDate;
+    @ManyToOne
+    private ReportTypeEntity reportType;
+
+    @ManyToOne
+    private GameEntity game;
+
+    @ManyToOne
+    private UserInfoEntity userInfo;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        ReviewsEntity that = (ReviewsEntity) o;
+        ReportEntity that = (ReportEntity) o;
         return id != null && Objects.equals(id, that.id);
     }
 

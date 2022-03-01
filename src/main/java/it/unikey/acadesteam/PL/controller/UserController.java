@@ -43,15 +43,14 @@ public class UserController {
         }
     }
 
-    @GetMapping() //fullname
-    private ResponseEntity<Set<UserREST>> findByFullname (
-            @RequestParam("firstName") String firstName,
-            @RequestParam("lastName") String lastName
+    @GetMapping() //username
+    private ResponseEntity<UserREST> findByUserName (
+            @RequestParam("username") String userName
             )  {
         try {
-            Set<UserREST> dtoS = service.findByNameAndSurname(firstName, lastName);
-            return new ResponseEntity<Set<UserREST>>(dtoS.stream()
-                    .map(userRESTMapper.fromUserDTOToUserRest).collect(Collectors.toList()), HttpStatus.OK);
+            UserREST dto = service.findByUsername(userName);
+            return new ResponseEntity<UserREST>(dto
+                    .map(userRESTMapper.fromUserDTOToUserRest), HttpStatus.OK);
         } catch (NotFoundException e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

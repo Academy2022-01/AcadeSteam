@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.UUID;
 
 @Data
-public class UserREST {
+public class UserRest {
     private UUID id;
     private String username;
     private String password;

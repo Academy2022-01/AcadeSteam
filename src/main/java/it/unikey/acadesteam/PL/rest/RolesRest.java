@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.UUID;
 
 @Data
-public class RolesREST {
+public class RolesRest {
     private UUID id;
     private String description;
 }

@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class GameStatusService implements CrudService<GameStateDto> {
+public class GameStateServiceImpl implements CrudService<GameStateDto> {
 
     private final GameStateMapper gameStateMapper;
     private final GameStateRepository gameStateRepository;

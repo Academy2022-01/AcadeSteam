@@ -1,6 +1,7 @@
 package it.unikey.acadesteam.DAL.entity;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -12,6 +13,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+@RequiredArgsConstructor
 @Table(name = "ROLES")
 public class RolesEntity {
 

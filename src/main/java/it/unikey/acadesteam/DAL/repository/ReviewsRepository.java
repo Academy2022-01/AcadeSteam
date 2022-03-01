@@ -1,4 +1,4 @@
 package it.unikey.acadesteam.DAL.repository;
 
-public interface RepositoryInterface {
+public interface ReviewsRepository {
 }

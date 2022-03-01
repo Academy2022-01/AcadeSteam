@@ -27,7 +27,7 @@ public class GameStateEntity {
     private String gameStateDescription;
 
 
-    @OneToMany(mappedBy = "game_state", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "gameState", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<GameEntity> games;
 
 }

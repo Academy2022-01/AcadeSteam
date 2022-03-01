@@ -28,8 +28,15 @@ public class GameStateServiceImpl implements CrudService<GameStateDto> {
     }
 
     @Override
-    public GameStateDto getById(UUID id) throws NotFoundException {
-        return null;
+    public GameStateDto getById(Integer id) throws NotFoundException {
+        if(!GameStateRepository.existsById(id))
+        {
+            throw new NotFoundException("Id GameStateDto does not exist!");
+        }
+        GameStateEntity objId = gameStateRepository.getById(id);
+        GameStateDto objIdDto = gameStateMapper.fromGameStateEntityToGameStateDto(objId);
+
+        return objIdDto;
     }
 
     @Override
@@ -51,7 +58,11 @@ public class GameStateServiceImpl implements CrudService<GameStateDto> {
     }
 
     @Override
-    public void delete(UUID id) throws NotFoundException {
-
+    public void delete(Integer id) throws NotFoundException {
+        if(!gameStateRepository.existsById(id))
+        {
+            throw new NotFoundException("Does not exist Id!");
+        }
+        gameStateRepository.deleteById(id);
     }
 }

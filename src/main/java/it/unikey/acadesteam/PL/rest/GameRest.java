@@ -1,15 +1,11 @@
-package it.unikey.acadesteam.BLL.dto;
+package it.unikey.acadesteam.PL.rest;
 
 import it.unikey.acadesteam.DAL.entity.GameStateEntity;
-import lombok.Data;
 
-@Data
-
-public class GameDto {
+public class GameRest {
     private Integer id;
     private String gameTitle;
     private String gamePath;
     private GameStateEntity gameState;
-    private UserInfoDto developer;
-
+    //private UserInfoRest developer;
 }

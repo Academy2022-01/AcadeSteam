@@ -24,7 +24,7 @@ public class UserEntity {
     @Type(type = "uuid-binary")
     @GeneratedValue(generator = "GUID_USER")
     @GenericGenerator(name = "GUID_USER", strategy = "uuid2")
-    @Column(name = "id_user", length = 16, unique= true, nullable = false)
+    @Column(name = "ID", length = 16, unique= true, nullable = false)
     private UUID id;
 
     @Column(nullable = false, unique = true)
@@ -40,7 +40,7 @@ public class UserEntity {
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_user", referencedColumnName = "id_roles")
+    /*@JoinColumn(name = "id_user", referencedColumnName = "id_roles")*/
     private RolesEntity roles;
 
     /*@OneToOne(cascade = CascadeType.ALL)

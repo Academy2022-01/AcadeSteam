@@ -1,6 +1,9 @@
 package it.unikey.acadesteam.DAL.entity;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -27,12 +30,12 @@ public class ReviewEntity {
     @Column(name = "ID", length = 16, unique= true, nullable = false)
     private UUID id;
 
-    @Column(name = "GAMES_ID", nullable = false)
+    @JoinColumn(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private GameEntity game;
 
-    @Column(name = "USERS_INFO_ID", nullable = false)
+    @JoinColumn(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private UserInfoEntity usersInfo;

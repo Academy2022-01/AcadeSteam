@@ -30,12 +30,12 @@ public class ReviewEntity {
     @Column(name = "ID", length = 16, unique= true, nullable = false)
     private UUID id;
 
-    @JoinColumn(name = "ID", nullable = false)
+    @JoinColumn(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private GameEntity game;
 
-    @JoinColumn(name = "ID", nullable = false)
+    @JoinColumn(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private UserInfoEntity usersInfo;

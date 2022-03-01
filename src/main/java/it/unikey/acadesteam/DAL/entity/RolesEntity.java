@@ -23,9 +23,9 @@ public class RolesEntity {
 
     @Id
     @Type(type = "uuid-binary")
-    @GeneratedValue(generator = "ROLES_USER")
-    @GenericGenerator(name = "ROLES_USER", strategy = "uuid2")
-    @Column(name = "id_roles", length = 16, unique= true, nullable = false)
+    @GeneratedValue(generator = "myGUID")
+    @GenericGenerator(name = "myGUID", strategy = "uuid2")
+    @Column(name = "ID", length = 16, unique= true, nullable = false)
     private UUID id;
 
     @Column(unique = true, nullable = false)

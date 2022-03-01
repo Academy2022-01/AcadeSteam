@@ -27,7 +27,7 @@ public class LibraryEntity {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private UserInfoEntity usersInfo;
+    private UserInfoEntity userInfo;
 
 
 }

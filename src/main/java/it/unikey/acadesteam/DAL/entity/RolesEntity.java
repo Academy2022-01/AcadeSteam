@@ -32,7 +32,6 @@ public class RolesEntity {
     private String description;
 
     @OneToMany(mappedBy = "roles", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(referencedColumnName = "id_user")
     private Set<UserEntity> userEntitySet;
 
     @Override

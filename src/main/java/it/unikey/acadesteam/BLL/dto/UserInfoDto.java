@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
-public class UserInfoDTO {
+public class UserInfoDto {
     private UUID id;
     private String firstName;
     private String lastName;

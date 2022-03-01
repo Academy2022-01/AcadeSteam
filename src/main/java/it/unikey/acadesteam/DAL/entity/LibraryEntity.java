@@ -26,7 +26,6 @@ public class LibraryEntity {
     @OneToMany(mappedBy = "gameEntity",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<GameEntity> game;
 
-    @Column(name = "USERS_INFO_ID", nullable = false)
     @OneToOne(fetch = FetchType.LAZY)
     private UserInfoEntity usersInfo;
 

@@ -23,7 +23,7 @@ public class LibraryEntity {
     private UUID id;
 
 
-    @OneToMany(mappedBy = "gameEntity",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "library", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<GameEntity> game;
 
     @OneToOne(fetch = FetchType.LAZY)

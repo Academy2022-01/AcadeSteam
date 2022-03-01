@@ -34,12 +34,20 @@ public class GameStateServiceImpl implements CrudService<GameStateDto> {
 
     @Override
     public List<GameStateDto> getAll() {
-        return null;
+    List<GameStateEntity> allState = gameStateRepository.findAll();
+    List<GameStateDto> dtoStates = gameStateMapper.fromGameStateEntitiesToDTOs(allState);
+    return dtoStates;
     }
 
     @Override
     public GameStateDto update(GameStateDto dto) throws NotFoundException {
-        return null;
+       if(!gameStateRepository.existsById(dto.getId())){
+           throw new NotFoundException("Not found state!");
+       }
+       GameStateEntity stateEntity=gameStateMapper.fromGameStateDtoToGameStateEntity(dto);
+       GameStateEntity stateUpdate= gameStateRepository.save(stateEntity);
+       GameStateDto newState=gameStateMapper.fromGameStateEntityToGameStateDto(stateUpdate);
+        return newState;
     }
 
     @Override

@@ -43,8 +43,7 @@ public class GameStateController {
 
     @PostMapping
     private ResponseEntity<GameStateRest> insertGameState(@RequestBody GameStateRest stateToSave) {
-        GameStateDto stateSaved = gameStateService.insert(gameStateMapper.fromGameStateRestToGameDto(stateToSave));
-        return new ResponseEntity(gameStateMapper.fromGameStateDtoToGameRest(stateSaved),HttpStatus.OK);
+        return new ResponseEntity(gameStateMapper.fromGameStateDtoToGameRest(gameStateService.insert(gameStateMapper.fromGameStateRestToGameDto(stateToSave))),HttpStatus.OK);
     }
 
     @PutMapping("/update")

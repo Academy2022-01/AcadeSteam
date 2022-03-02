@@ -5,15 +5,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.time.LocalDate;
 import java.util.Objects;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -24,11 +21,8 @@ import java.util.UUID;
 public class ReviewEntity {
 
     @Id
-    @Type(type = "uuid-binary")
-    @GeneratedValue(generator = "myGUID")
-    @GenericGenerator(name = "myGUID", strategy = "uuid2")
-    @Column(name = "ID", length = 16, unique= true, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     @JoinColumn(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)

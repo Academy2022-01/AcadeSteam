@@ -5,27 +5,21 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "USER")
+@Table(name = "USERS")
 public class UserEntity {
 
     @Id
-    @Type(type = "uuid-binary")
-    @GeneratedValue(generator = "GUID_USER")
-    @GenericGenerator(name = "GUID_USER", strategy = "uuid2")
-    @Column(name = "id_user", length = 16, unique= true, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -40,12 +34,11 @@ public class UserEntity {
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_user", referencedColumnName = "id_roles")
+    @ToString.Exclude
     private RolesEntity roles;
 
-    /*@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userInfo_id", referencedColumnName = "id")
-    private UserInfoEntity userInfo;*/
+    @OneToOne(cascade = CascadeType.ALL)
+    private UserInfoEntity userInfo;
 
     @Override
     public int hashCode() {

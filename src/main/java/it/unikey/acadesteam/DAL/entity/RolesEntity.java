@@ -5,13 +5,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -22,16 +19,14 @@ import java.util.UUID;
 public class RolesEntity {
 
     @Id
-    @Type(type = "uuid-binary")
-    @GeneratedValue(generator = "ROLES_USER")
-    @GenericGenerator(name = "ROLES_USER", strategy = "uuid2")
-    @Column(name = "id_roles", length = 16, unique= true, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     @Column(unique = true, nullable = false)
     private String description;
 
     @OneToMany(mappedBy = "roles", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ToString.Exclude
     private Set<UserEntity> userEntitySet;
 
     @Override

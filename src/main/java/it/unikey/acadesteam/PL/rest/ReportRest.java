@@ -16,6 +16,6 @@ public class ReportRest {
     private LocalDate date;
     private String description;
     private ReportTypeRest reportType;
-    private GameRest game;
-    private UserInfoRest userInfo;
+    //private GameRest game;
+    //private UserInfoRest userInfo;
 }

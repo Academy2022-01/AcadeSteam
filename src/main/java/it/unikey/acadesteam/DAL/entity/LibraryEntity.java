@@ -1,33 +1,42 @@
 package it.unikey.acadesteam.DAL.entity;
 
-import lombok.Data;
-import lombok.ToString;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.Set;
-import java.util.UUID;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
-@Table(name = "LIBRARY")
+@Table(name = "LIBRARIES")
 public class LibraryEntity {
 
-
     @Id
-    @Type(type = "uuid-binary")
-    @GeneratedValue(generator = "myGUID")
-    @GenericGenerator(name = "myGUID", strategy = "uuid2")
-    @Column(name = "ID", length = 16, unique = true, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private GameEntity game;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private UserInfoEntity userInfo;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        LibraryEntity that = (LibraryEntity) o;
+        return id != null && Objects.equals(id, that.id);
+    }
 
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

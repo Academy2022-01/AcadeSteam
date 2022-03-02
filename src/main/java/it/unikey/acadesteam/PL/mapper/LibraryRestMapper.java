@@ -1,7 +1,9 @@
 package it.unikey.acadesteam.PL.mapper;
 
 
+import it.unikey.acadesteam.BLL.dto.LibraryDto;
 import it.unikey.acadesteam.BLL.dto.UserInfoDto;
+import it.unikey.acadesteam.PL.rest.LibraryRest;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

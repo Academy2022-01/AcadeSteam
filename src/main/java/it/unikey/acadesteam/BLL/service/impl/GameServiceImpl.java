@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,7 +23,7 @@ public class GameServiceImpl implements CrudService<GameDto> {
     }
 
     @Override
-    public GameDto getById(UUID id) throws NotFoundException {
+    public GameDto getById(Integer id) throws NotFoundException {
         if (!repository.existsById(id))
             throw new NotFoundException("Not found at id " + id);
         return mapper.fromGameEntityToGameDto(repository.getById(id));
@@ -43,7 +42,7 @@ public class GameServiceImpl implements CrudService<GameDto> {
     }
 
     @Override
-    public void delete(UUID id) throws NotFoundException {
+    public void delete(Integer id) throws NotFoundException {
         if(!repository.existsById(id))
             throw new NotFoundException("Not found at id " + id);
         repository.deleteById(id);

@@ -10,6 +10,5 @@ public class GameDto {
     private String gameTitle;
     private String gamePath;
     private GameStateEntity gameState;
-    private UserInfoDto developer;
 
 }

@@ -7,8 +7,8 @@ import java.util.UUID;
 
 public interface CrudService<T> {
     T insert(T dto);
-    T getById(UUID id) throws NotFoundException;
+    T getById(Integer id) throws NotFoundException;
     List<T> getAll();
     T update(T dto) throws NotFoundException;
-    void delete(UUID id) throws NotFoundException;
+    void delete(Integer id) throws NotFoundException;
 }

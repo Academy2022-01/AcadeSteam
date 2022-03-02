@@ -29,13 +29,12 @@ public class GameStateServiceImpl implements CrudService<GameStateDto> {
 
     @Override
     public GameStateDto getById(Integer id) throws NotFoundException {
-        if(!GameStateRepository.existsById(id))
+        if(!gameStateRepository.existsById(id))
         {
             throw new NotFoundException("Id GameStateDto does not exist!");
         }
         GameStateEntity objId = gameStateRepository.getById(id);
         GameStateDto objIdDto = gameStateMapper.fromGameStateEntityToGameStateDto(objId);
-
         return objIdDto;
     }
 

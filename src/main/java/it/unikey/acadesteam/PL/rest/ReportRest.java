@@ -17,5 +17,5 @@ public class ReportRest {
     private String description;
     private ReportTypeRest reportType;
     //private GameRest game;
-    //private UserInfoRest userInfo;
+    private UserInfoRest userInfo;
 }

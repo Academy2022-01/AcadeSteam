@@ -6,6 +6,6 @@ import java.util.UUID;
 
 @Data
 public class RolesRest {
-    private UUID id;
+    private Integer id;
     private String description;
 }

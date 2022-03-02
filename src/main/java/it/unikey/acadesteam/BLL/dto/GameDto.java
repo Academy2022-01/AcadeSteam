@@ -3,15 +3,18 @@ package it.unikey.acadesteam.BLL.dto;
 import it.unikey.acadesteam.DAL.entity.GameStateEntity;
 import lombok.Data;
 
-import java.util.UUID;
+import java.util.Set;
 
 @Data
 
 public class GameDto {
-    private UUID id;
+    private Integer id;
     private String gameTitle;
     private String gamePath;
-    private GameStateEntity gameState;
-//    private UserInfoEntity developer;
+    private GameStateDto gameState;
+    private Set<ReportDto> reports;
+    private Set<LibraryDto> library;
+    private UserInfoDto developer;
+    //private Set<ReviewDto> reviews;
 
 }

@@ -42,7 +42,7 @@ public class GameStateController {
     }
 
     @PostMapping
-    private ResponseEntity<GameStateRest> insertAuthor(@RequestBody GameStateRest stateToSave) {
+    private ResponseEntity<GameStateRest> insertGameState(@RequestBody GameStateRest stateToSave) {
         GameStateDto stateSaved = gameStateService.insert(gameStateMapper.fromGameStateRestToGameDto(stateToSave));
         return new ResponseEntity(gameStateMapper.fromGameStateDtoToGameRest(stateSaved),HttpStatus.OK);
     }

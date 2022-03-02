@@ -18,7 +18,4 @@ public class UserInfoRest {
     private LocalDate birthDate;
     private String nationality;
     private String gender;
-    private Set<LibraryRest> libraries;
-    private Set<ReportRest> reports;
-    private UserEntity user;
 }

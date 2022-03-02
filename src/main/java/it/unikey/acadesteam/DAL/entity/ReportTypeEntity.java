@@ -16,7 +16,7 @@ import java.util.Set;
 public class ReportTypeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "DESCRIPTION", unique = true, nullable = false)

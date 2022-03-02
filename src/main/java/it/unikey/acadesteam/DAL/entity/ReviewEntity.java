@@ -21,7 +21,7 @@ import java.util.Objects;
 public class ReviewEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @JoinColumn(nullable = false)

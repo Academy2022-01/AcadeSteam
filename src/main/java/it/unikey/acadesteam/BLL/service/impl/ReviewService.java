@@ -19,7 +19,10 @@ public class ReviewService implements CrudService<ReviewDto> {
 
     @Override
     public ReviewDto insert(ReviewDto dto) {
-        return null;
+        return reviewMapper
+                .fromReviewEntityToReviewDto(reviewRepository
+                    .save(reviewMapper
+                        .fromReviewDtoToReviewEntity(dto)));
     }
 
     @Override

@@ -8,10 +8,9 @@ import java.util.UUID;
 @Data
 
 public class GameDto {
-    private UUID id;
+    private Integer id;
     private String gameTitle;
     private String gamePath;
-    private GameStateEntity gameState;
-//    private UserInfoEntity developer;
+    private GameStateDto gameState;
 
 }

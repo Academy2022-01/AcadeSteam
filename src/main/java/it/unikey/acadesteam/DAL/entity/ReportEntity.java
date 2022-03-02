@@ -16,7 +16,7 @@ import java.util.Objects;
 public class ReportEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "REPORT_DATE", nullable = false)

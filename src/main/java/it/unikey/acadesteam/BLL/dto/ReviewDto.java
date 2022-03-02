@@ -7,8 +7,8 @@ import java.time.LocalDate;
 
 public class ReviewDto {
     private Integer id;
-    private GameEntity game;
-    private UserInfoEntity userInfo;
+    private GameDto game;
+    private UserInfoDto userInfo;
     private Integer voteNumber;
     private String description;
     private LocalDate reviewDate;

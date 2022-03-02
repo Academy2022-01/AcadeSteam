@@ -1,10 +1,10 @@
 package it.unikey.acadesteam.BLL.service.impl;
 
-import it.unikey.acadesteam.BLL.dto.LibraryDto;
+import it.unikey.acadesteam.BLL.dto.UserInfoDto;
 import it.unikey.acadesteam.BLL.exception.NotFoundException;
-import it.unikey.acadesteam.BLL.mapper.LibraryMapper;
+import it.unikey.acadesteam.BLL.mapper.UserInfoMapper;
 import it.unikey.acadesteam.BLL.service.CrudService;
-import it.unikey.acadesteam.DAL.repository.LibraryRepository;
+import it.unikey.acadesteam.DAL.repository.UserInfoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,49 +13,48 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class LibraryServiceImpl implements CrudService<LibraryDto> {
+public class UserInfoServiceImpl implements CrudService<UserInfoDto> {
 
-    private final LibraryMapper mapper;
-    private final LibraryRepository repository;
+    private final UserInfoMapper mapper;
+    private final UserInfoRepository repository;
 
     @Override
-    public LibraryDto insert(LibraryDto dto) {
+    public UserInfoDto insert(UserInfoDto dto) {
         return mapper
-                .fromLibraryEntityToLibrarySto(repository
+                .fromUserInfoEntitytoUserInfoDto(repository
                         .save(mapper
-                                .fromLibraryDtoToLibraryEntity(dto)));
+                                .fromUserInfoDtotoUserInfoEntity(dto)));
     }
 
     @Override
-    public LibraryDto getById(Integer id) throws NotFoundException {
+    public UserInfoDto getById(Integer id) throws NotFoundException {
         if (!repository.existsById(id)) {
             throw new NotFoundException("Not found at id " + id);
         }
         return mapper
-                .fromLibraryEntityToLibrarySto(repository
+                .fromUserInfoEntitytoUserInfoDto(repository
                         .getById(id));
-
     }
 
     @Override
-    public List<LibraryDto> getAll() {
-
+    public List<UserInfoDto> getAll() {
         return repository
                 .findAll()
                 .stream()
-                .map(mapper::fromLibraryEntityToLibrarySto)
-                .collect(Collectors.toList());
+                .map(mapper::fromUserInfoEntitytoUserInfoDto)
+                .collect(Collectors
+                        .toList());
     }
 
     @Override
-    public LibraryDto update(LibraryDto dto) throws NotFoundException {
+    public UserInfoDto update(UserInfoDto dto) throws NotFoundException {
         if (!repository.existsById(dto.getId())) {
             throw new NotFoundException("Not found at id " + dto.getId());
         }
         return mapper
-                .fromLibraryEntityToLibrarySto(repository
+                .fromUserInfoEntitytoUserInfoDto(repository
                         .save(mapper
-                                .fromLibraryDtoToLibraryEntity(dto)));
+                                .fromUserInfoDtotoUserInfoEntity(dto)));
     }
 
     @Override

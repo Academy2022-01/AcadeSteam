@@ -1,30 +1,29 @@
 package it.unikey.acadesteam.DAL.entity;
 
 
-import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 @Table(name= "USERS_INFO")
 public class UserInfoEntity {
 
     @Id
-    @Type(type = "uuid-binary")
-    @GeneratedValue(generator = "myGUID")
-    @GenericGenerator(name = "myGUID", strategy = "uuid2")
-    @Column(name = "ID", length = 16, unique= true, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
-    @Column(name = "FRISTNAME", length = 150)
-    private String fristName;
+    @Column(name = "FIRSTNAME", length = 150)
+    private String firstName;
 
     @Column(name = "LASTNAME", length = 150)
     private String lastName;
@@ -39,9 +38,26 @@ public class UserInfoEntity {
     private String gender;
 
     @OneToMany(mappedBy ="userInfo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ToString.Exclude
     private Set<LibraryEntity> libraries;
 
     @OneToMany(mappedBy ="userInfo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ToString.Exclude
     private Set<ReportEntity> reports;
 
+    @OneToOne(mappedBy = "userInfo")
+    private UserEntity user;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        UserInfoEntity that = (UserInfoEntity) o;
+        return id != null && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

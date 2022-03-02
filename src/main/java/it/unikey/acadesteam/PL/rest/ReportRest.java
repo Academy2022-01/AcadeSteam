@@ -12,7 +12,7 @@ import java.util.UUID;
 @Data
 @RequiredArgsConstructor
 public class ReportRest {
-    private UUID id;
+    private Integer id;
     private LocalDate date;
     private String description;
     private ReportTypeRest reportType;

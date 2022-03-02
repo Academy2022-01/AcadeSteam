@@ -10,7 +10,7 @@ import java.util.UUID;
 @Data
 @RequiredArgsConstructor
 public class ReportTypeRest {
-    private UUID id;
+    private Integer id;
     private String description;
     private Set<ReportRest> reports;
 }

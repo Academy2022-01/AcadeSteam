@@ -24,7 +24,10 @@ public class ReviewService implements CrudService<ReviewDto> {
 
     @Override
     public ReviewDto getById(Integer id) throws NotFoundException {
-        return null;
+        if (!reviewRepository.existsById(id)) {
+            throw new NotFoundException("The review you're trying to get not found in DB");
+        }
+        return reviewMapper.fromReviewEntityToReviewDto(reviewRepository.getById(id));
     }
 
     @Override

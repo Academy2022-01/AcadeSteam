@@ -17,9 +17,7 @@ public class GameStateEntity {
     private Integer id;
 
     @Column(nullable = false, unique = true)
-    /*@Type(type="org.hibernate.type.StringNVarcharType")*/
     private String gameStateDescription;
-
 
     @OneToMany(mappedBy = "gameState", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<GameEntity> games;

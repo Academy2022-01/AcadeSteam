@@ -28,4 +28,13 @@ public class GameEntity {
     @OneToMany(mappedBy = "game", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<LibraryEntity> library;
 
+    @OneToMany(mappedBy = "game", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<ReportEntity> reports;
+
+    @ManyToOne
+    private UserInfoEntity developer;
+
+    @OneToMany(mappedBy = "game", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<ReviewEntity> reviews;
+
 }

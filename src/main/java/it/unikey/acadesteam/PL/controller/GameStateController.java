@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
@@ -22,10 +23,11 @@ public class GameStateController {
     private final GameStateServiceImpl gameStateService;
 
     @GetMapping
-    private ResponseEntity<List<GameStateRest>> findAll(){
-        List<GameStateDto> dtoState= gameStateService.getAll();
-        List<GameStateRest> restState=gameStateMapper.fromGameStateDtoToGameStateRests((GameStateDto) dtoState);
-        return ResponseEntity.ok(restState);
+    private ResponseEntity<List<GameStateRest>> getAllGameState(){
+        return ResponseEntity.ok(gameStateService.getAll()
+                .stream()
+                .map(gameStateMapper::fromGameStateDtoToGameRest)
+                .collect(Collectors.toList()));
     }
 
     @GetMapping("/{id}")

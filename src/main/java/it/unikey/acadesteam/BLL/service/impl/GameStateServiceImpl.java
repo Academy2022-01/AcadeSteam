@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -21,10 +22,7 @@ public class GameStateServiceImpl implements CrudService<GameStateDto> {
 
     @Override
     public GameStateDto insert(GameStateDto dto) {
-        GameStateEntity newGameState = gameStateMapper.fromGameStateDtoToGameStateEntity(dto);
-        GameStateEntity stateWithId = gameStateRepository.save(newGameState);
-        GameStateDto savedStateDto = gameStateMapper.fromGameStateEntityToGameStateDto(stateWithId);
-        return savedStateDto;
+        return gameStateMapper.fromGameStateEntityToGameStateDto(gameStateRepository.save(gameStateMapper.fromGameStateDtoToGameStateEntity(dto)));
     }
 
     @Override
@@ -33,16 +31,15 @@ public class GameStateServiceImpl implements CrudService<GameStateDto> {
         {
             throw new NotFoundException("Id GameStateDto does not exist!");
         }
-        GameStateEntity objId = gameStateRepository.getById(id);
-        GameStateDto objIdDto = gameStateMapper.fromGameStateEntityToGameStateDto(objId);
-        return objIdDto;
+        return gameStateMapper.fromGameStateEntityToGameStateDto(gameStateRepository.getById(id));
     }
 
     @Override
     public List<GameStateDto> getAll() {
-    List<GameStateEntity> allState = gameStateRepository.findAll();
-    List<GameStateDto> dtoStates = gameStateMapper.fromGameStateEntitiesToDTOs(allState);
-    return dtoStates;
+    return gameStateRepository.findAll()
+            .stream()
+            .map(gameStateMapper::fromGameStateEntityToGameStateDto)
+            .collect(Collectors.toList()); //gg :)
     }
 
     @Override
@@ -50,10 +47,7 @@ public class GameStateServiceImpl implements CrudService<GameStateDto> {
        if(!gameStateRepository.existsById(dto.getId())){
            throw new NotFoundException("Not found state!");
        }
-       GameStateEntity stateEntity=gameStateMapper.fromGameStateDtoToGameStateEntity(dto);
-       GameStateEntity stateUpdate= gameStateRepository.save(stateEntity);
-       GameStateDto newState=gameStateMapper.fromGameStateEntityToGameStateDto(stateUpdate);
-        return newState;
+        return gameStateMapper.fromGameStateEntityToGameStateDto(gameStateRepository.save(gameStateMapper.fromGameStateDtoToGameStateEntity(dto)));
     }
 
     @Override

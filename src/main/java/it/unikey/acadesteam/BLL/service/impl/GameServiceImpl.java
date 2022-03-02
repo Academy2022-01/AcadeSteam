@@ -31,7 +31,10 @@ public class GameServiceImpl implements CrudService<GameDto> {
 
     @Override
     public List<GameDto> getAll() {
-        return repository.findAll().stream().map(mapper::fromGameEntityToGameDto).collect(Collectors.toList());
+        return repository.findAll()
+                .stream()
+                .map(mapper::fromGameEntityToGameDto)
+                .collect(Collectors.toList());
     }
 
     @Override

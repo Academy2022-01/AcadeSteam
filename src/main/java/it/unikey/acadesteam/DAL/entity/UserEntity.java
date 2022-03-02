@@ -5,12 +5,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -38,12 +35,10 @@ public class UserEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @ToString.Exclude
-    /*@JoinColumn(name = "id_user", referencedColumnName = "id_roles")*/
     private RolesEntity roles;
 
-    /*@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userInfo_id", referencedColumnName = "id")
-    private UserInfoEntity userInfo;*/
+    @OneToOne(cascade = CascadeType.ALL)
+    private UserInfoEntity userInfo;
 
     @Override
     public int hashCode() {

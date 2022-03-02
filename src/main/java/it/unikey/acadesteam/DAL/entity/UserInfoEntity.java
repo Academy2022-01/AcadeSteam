@@ -3,14 +3,11 @@ package it.unikey.acadesteam.DAL.entity;
 
 import lombok.*;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 
 
 @Getter
@@ -47,6 +44,9 @@ public class UserInfoEntity {
     @OneToMany(mappedBy ="userInfo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
     private Set<ReportEntity> reports;
+
+    @OneToOne(mappedBy = "userInfo")
+    private UserEntity user;
 
     @Override
     public boolean equals(Object o) {

@@ -23,11 +23,16 @@ public class LibraryEntity {
     private UUID id;
 
 
+<<<<<<< .merge_file_a07500
     @OneToMany(mappedBy = "library", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<GameEntity> game;
+=======
+    @ManyToOne(fetch = FetchType.LAZY)
+    private GameEntity game;
+>>>>>>> .merge_file_a11260
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private UserInfoEntity usersInfo;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private UserInfoEntity userInfo;
 
 
 

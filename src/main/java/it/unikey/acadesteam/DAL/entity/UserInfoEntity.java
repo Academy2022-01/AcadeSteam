@@ -39,6 +39,9 @@ public class UserInfoEntity {
     private String gender;
 
     @OneToMany(mappedBy ="userInfo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<LibraryEntity> libraries;
+
+    @OneToMany(mappedBy ="userInfo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ReportEntity> reports;
 
 }

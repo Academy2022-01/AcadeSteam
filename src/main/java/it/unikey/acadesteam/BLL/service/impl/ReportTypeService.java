@@ -26,7 +26,7 @@ public class ReportTypeService implements CrudService<ReportTypeDto> {
     }
 
     @Override
-    public ReportTypeDto getById(UUID id) throws NotFoundException {
+    public ReportTypeDto getById(Integer id) throws NotFoundException {
         if (!repository.existsById(id))
             throw new NotFoundException("Not found at id " + id);
         return mapper.fromEntityToDto(repository.getById(id));
@@ -45,7 +45,7 @@ public class ReportTypeService implements CrudService<ReportTypeDto> {
     }
 
     @Override
-    public void delete(UUID id) throws NotFoundException {
+    public void delete(Integer id) throws NotFoundException {
         if(!repository.existsById(id))
             throw new NotFoundException("Not found at id " + id);
         repository.deleteById(id);

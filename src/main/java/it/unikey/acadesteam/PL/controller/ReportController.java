@@ -44,7 +44,7 @@ public class ReportController {
     }
 
     @DeleteMapping("/{id}")
-    private ResponseEntity<Void> deleteReport(@PathVariable("id") UUID id){
+    private ResponseEntity<Void> deleteReport(@PathVariable("id") Integer id){
         try{
             service.delete(id);
             return new ResponseEntity<>(HttpStatus.OK);

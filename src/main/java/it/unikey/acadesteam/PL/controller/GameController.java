@@ -2,6 +2,7 @@ package it.unikey.acadesteam.PL.controller;
 
 import it.unikey.acadesteam.BLL.dto.GameDto;
 import it.unikey.acadesteam.BLL.exception.NotFoundException;
+import it.unikey.acadesteam.BLL.service.impl.GameServiceImpl;
 import it.unikey.acadesteam.PL.mapper.GameRestMapper;
 import it.unikey.acadesteam.PL.rest.GameRest;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class GameController {
 
     @PostMapping
     private ResponseEntity<GameRest> postGame(@RequestBody GameRest game) {
-        GameDto dtoInserted = service.insert(gameMapper.fromGameRestToGameDto(game);
+        GameDto dtoInserted = service.insert(gameMapper.fromGameRestToGameDto(game));
         return new ResponseEntity<>(gameMapper.fromGameDtoToGameRest(dtoInserted), HttpStatus.OK);
     }
 
@@ -41,7 +42,7 @@ public class GameController {
 
     @GetMapping
     private ResponseEntity<List<GameRest>> getAllGame() {
-        return new ResponseEntity<>(service.findAll().stream().map(gameMapper::fromGameDtoToGameRest).collect(Collectors.toList()), HttpStatus.OK);
+        return new ResponseEntity<>(service.getAll().stream().map(gameMapper::fromGameDtoToGameRest).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @PutMapping
@@ -58,7 +59,7 @@ public class GameController {
     @DeleteMapping(path = "/{id}")
     private ResponseEntity<Void> deleteGame(@PathVariable("id") Integer id) {
         try {
-            service.deleteById(id);
+            service.delete(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NotFoundException e) {
             e.printStackTrace();

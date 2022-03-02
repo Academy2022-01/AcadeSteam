@@ -5,8 +5,9 @@ import lombok.Data;
 import java.util.UUID;
 
 @Data
-public class RolesDTO {
-    private UUID id;
+public class RolesDto {
+
+    private Integer id;
     private String description;
 
 }

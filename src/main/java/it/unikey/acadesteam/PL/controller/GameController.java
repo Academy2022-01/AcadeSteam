@@ -31,7 +31,7 @@ public class GameController {
     @GetMapping(path = "/{id}")
     private ResponseEntity<GameRest> getGameById(@PathVariable("id") Integer id) {
         try{
-            GameDto dto = gameService.getById(id);
+            GameDto dto = service.getById(id);
             return new ResponseEntity<>(gameMapper.fromGameDtoToGameRest(dto), HttpStatus.OK);
         } catch(NotFoundException e) {
             e.printStackTrace();

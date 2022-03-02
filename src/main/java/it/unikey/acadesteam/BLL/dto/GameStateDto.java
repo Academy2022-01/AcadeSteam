@@ -7,6 +7,6 @@ import java.util.UUID;
 @Data
 
 public class GameStateDto {
-    private UUID id;
+    private Integer id;
     private String gameStateDescription;
 }

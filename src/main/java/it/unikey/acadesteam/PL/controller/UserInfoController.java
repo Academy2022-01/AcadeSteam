@@ -5,7 +5,6 @@ import it.unikey.acadesteam.BLL.dto.UserInfoDto;
 import it.unikey.acadesteam.BLL.exception.NotFoundException;
 import it.unikey.acadesteam.BLL.service.impl.UserInfoServiceImpl;
 import it.unikey.acadesteam.PL.mapper.UserInfoRestMapper;
-import it.unikey.acadesteam.PL.rest.ReportRest;
 import it.unikey.acadesteam.PL.rest.UserInfoRest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

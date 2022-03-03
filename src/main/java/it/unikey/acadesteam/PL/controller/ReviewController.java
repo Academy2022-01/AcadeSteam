@@ -1,6 +1,7 @@
 package it.unikey.acadesteam.PL.controller;
 
 import it.unikey.acadesteam.BLL.dto.ReviewDto;
+import it.unikey.acadesteam.BLL.exception.NotFoundException;
 import it.unikey.acadesteam.BLL.service.impl.ReviewService;
 import it.unikey.acadesteam.PL.mapper.ReviewRestMapper;
 import it.unikey.acadesteam.PL.rest.ReviewRest;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/review")
@@ -24,6 +26,27 @@ public class ReviewController {
     private ResponseEntity<ReviewRest> postReview(@RequestBody ReviewRest review) {
         ReviewDto reviewDto = reviewService.insert(reviewMapper.fromReviewRestToReviewDto(review));
         return new ResponseEntity<>(reviewMapper.fromReviewDtoToReviewRest(reviewDto), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/{id}")
+    private ResponseEntity<ReviewRest> getReviewById(@PathVariable("id") Integer id){
+        try {
+            ReviewDto dto = reviewService.getById(id);
+            return new ResponseEntity<>(reviewMapper.fromReviewDtoToReviewRest(dto), HttpStatus.OK);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    @DeleteMapping(path = "/{id}")
+    private ResponseEntity<Void> deleteReview(@PathVariable("id") Integer id){
+        try {
+            reviewService.delete(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 }

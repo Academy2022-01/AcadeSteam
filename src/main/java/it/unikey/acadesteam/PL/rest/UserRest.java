@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Data
 public class UserRest {
-    private UUID id;
+    private Integer id;
     private String username;
     private String password;
     boolean isActive;

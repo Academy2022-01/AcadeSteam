@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping(value = "/review")
 @RequiredArgsConstructor
@@ -60,4 +63,15 @@ public class ReviewController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping
+    private ResponseEntity<List<ReviewRest>> getAll(){
+        List<ReviewRest> reviewList = reviewService
+                .getAll()
+                .stream()
+                .map(reviewMapper::fromReviewDtoToReviewRest)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(reviewList,HttpStatus.OK);
+    }
+
 }

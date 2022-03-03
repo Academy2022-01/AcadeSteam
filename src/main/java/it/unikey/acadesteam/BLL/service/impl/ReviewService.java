@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +37,12 @@ public class ReviewService implements CrudService<ReviewDto> {
 
     @Override
     public List<ReviewDto> getAll() {
-        return null;
+      return reviewRepository
+        .findAll()
+        .stream()
+              .map(reviewMapper::fromReviewEntityToReviewDto)
+              .collect(Collectors.toList());
+
     }
 
     @Override

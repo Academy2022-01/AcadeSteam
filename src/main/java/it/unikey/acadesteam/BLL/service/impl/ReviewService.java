@@ -4,6 +4,7 @@ import it.unikey.acadesteam.BLL.dto.ReviewDto;
 import it.unikey.acadesteam.BLL.exception.NotFoundException;
 import it.unikey.acadesteam.BLL.mapper.ReviewDtoMapper;
 import it.unikey.acadesteam.BLL.service.CrudService;
+import it.unikey.acadesteam.DAL.entity.ReviewEntity;
 import it.unikey.acadesteam.DAL.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -40,7 +41,9 @@ public class ReviewService implements CrudService<ReviewDto> {
 
     @Override
     public ReviewDto update(ReviewDto dto) throws NotFoundException {
-        return null;
+        ReviewEntity reviewEntity = reviewMapper.fromReviewDtoToReviewEntity(dto);
+        ReviewEntity entitySaved = reviewRepository.save(reviewEntity);
+        return reviewMapper.fromReviewEntityToReviewDto(entitySaved);
     }
 
     @Override

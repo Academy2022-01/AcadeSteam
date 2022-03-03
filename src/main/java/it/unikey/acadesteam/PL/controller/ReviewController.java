@@ -49,4 +49,15 @@ public class ReviewController {
         }
     }
 
+    @PutMapping
+    private ResponseEntity<ReviewRest> updateReview (@RequestBody ReviewRest reviewRest){
+        try{
+            ReviewDto reviewDto  = reviewMapper.fromReviewRestToReviewDto(reviewRest);
+            ReviewDto dtoSaved= reviewService.update(reviewDto);
+            return new ResponseEntity<>(reviewMapper.fromReviewDtoToReviewRest(dtoSaved), HttpStatus.OK);
+        }
+        catch (NotFoundException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

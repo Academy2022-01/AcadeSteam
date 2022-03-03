@@ -46,7 +46,7 @@ public class UserController {
         }
     }
 
-    @GetMapping() //username
+    @GetMapping(path = "/{username}") //username
     private ResponseEntity<UserRest> findByUserName(
             @RequestParam("username") String userName
     ) {
@@ -59,7 +59,7 @@ public class UserController {
         }
     }
 
-    @GetMapping()
+    @GetMapping(path = "/{email}")
     private ResponseEntity<UserRest> findByEmail(
             @RequestParam("email") String email
     ) {

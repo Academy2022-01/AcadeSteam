@@ -32,7 +32,7 @@ public class ReviewEntity {
     @JoinColumn(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
-    private UserInfoEntity usersInfo;
+    private UserInfoEntity userInfo;
 
     @Column(name = "VOTE_NUMBER", nullable = false, length = 1)
     @Min(0)

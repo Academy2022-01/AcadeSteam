@@ -7,7 +7,8 @@ import java.util.UUID;
 
 @Data
 public class UserInfoDto {
-    private UUID id;
+
+    private Integer id;
     private String firstName;
     private String lastName;
     private LocalDate birthDate;

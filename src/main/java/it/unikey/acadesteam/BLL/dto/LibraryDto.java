@@ -8,7 +8,8 @@ import java.util.UUID;
 
 @Data
 public class LibraryDto {
-    private UUID id;
+
+    private Integer id;
     private UserInfoDto userInfo;
     private GameDto games;
 }

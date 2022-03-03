@@ -13,6 +13,4 @@ public interface GameStateRestMapper {
 
     GameStateDto fromGameStateRestToGameDto(GameStateRest rest);
     GameStateRest fromGameStateDtoToGameRest(GameStateDto dto);
-    List<GameStateRest> fromGameStateDtoToGameStateRests (GameStateDto dtos);
-
 }

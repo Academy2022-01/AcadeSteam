@@ -13,9 +13,9 @@ public class GameDto {
     private String gameTitle;
     private String gamePath;
     private GameStateDto gameState;
-    private Set<ReportDto> reports;
-    private Set<LibraryDto> library;
     private UserInfoDto developer;
+    //private Set<ReportDto> reports;
+    //private Set<LibraryDto> library;
     //private Set<ReviewDto> reviews;
 
 }

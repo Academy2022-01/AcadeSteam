@@ -2,9 +2,8 @@ package it.unikey.acadesteam.PL.controller;
 
 import it.unikey.acadesteam.BLL.dto.RolesDto;
 import it.unikey.acadesteam.BLL.exception.NotFoundException;
-import it.unikey.acadesteam.BLL.mapper.RolesMapper;
 import it.unikey.acadesteam.BLL.service.impl.RolesServiceImpl;
-import it.unikey.acadesteam.PL.mapper.RolesRESTMapper;
+import it.unikey.acadesteam.PL.mapper.RolesRestMapper;
 import it.unikey.acadesteam.PL.rest.RolesRest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,14 +18,14 @@ import java.util.stream.Collectors;
 @RequestMapping(path = "/roles")
 public class RolesController {
 
-    private RolesRESTMapper rolesMapper;
-    private RolesServiceImpl service;
+    private final RolesRestMapper mapper;
+    private final RolesServiceImpl service;
 
     @GetMapping(path = "/{id}")
     private ResponseEntity<RolesRest> getById(@PathVariable("id") Integer id) {
         try {
             RolesDto dto = service.getById(id);
-            return new ResponseEntity<>(rolesMapper.fromRolesDtoToRolesRest(dto), HttpStatus.OK);
+            return new ResponseEntity<>(mapper.fromRolesDtoToRolesRest(dto), HttpStatus.OK);
 
         } catch (NotFoundException e) {
             e.printStackTrace();
@@ -37,14 +36,14 @@ public class RolesController {
     @GetMapping
     private ResponseEntity<List<RolesRest>> getAll() {
         List<RolesDto> dtoS = service.getAll();
-        return new ResponseEntity<List<RolesRest>>(dtoS.stream().map(rolesMapper::fromRolesDtoToRolesRest).collect(Collectors.toList()), HttpStatus.OK);
+        return new ResponseEntity<>(dtoS.stream().map(mapper::fromRolesDtoToRolesRest).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @PutMapping
-    private ResponseEntity<RolesRest> update(@RequestBody RolesRest role) {
+    private ResponseEntity<RolesRest> update(@RequestBody RolesRest roleRest) {
         try {
-            RolesDto dto = service.update(rolesMapper.fromRolesRestToRolesDto(role));
-            return new ResponseEntity<RolesRest>(rolesMapper.fromRolesDtoToRolesRest(dto), HttpStatus.OK);
+            RolesDto dto = service.update(mapper.fromRolesRestToRolesDto(roleRest));
+            return new ResponseEntity<>(mapper.fromRolesDtoToRolesRest(dto), HttpStatus.OK);
         } catch (NotFoundException e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -52,24 +51,19 @@ public class RolesController {
     }
 
     @PostMapping
-    private ResponseEntity<RolesRest> post(@RequestBody RolesRest role) {
-        try {
-            RolesDto dto = service.getById(role.getId());
-            return new ResponseEntity<RolesRest>(rolesMapper.fromRolesDtoToRolesRest(dto), HttpStatus.OK);
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
+    private ResponseEntity<RolesRest> post(@RequestBody RolesRest roleRest) {
+        RolesDto roleDto = mapper.fromRolesRestToRolesDto(roleRest);
+        return new ResponseEntity<>(mapper.fromRolesDtoToRolesRest(service.insert(roleDto)), HttpStatus.OK);
     }
 
     @DeleteMapping( path = "/{id}")
     private ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
         try {
-            RolesDto dto = service.getById(id);
-            return new ResponseEntity<Void>(HttpStatus.OK);
+            service.delete(id);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (NotFoundException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }

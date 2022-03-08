@@ -10,5 +10,5 @@ import java.util.Set;
 public class ReportTypeDto {
     private Integer id;
     private String description;
-    private Set<ReportDto> reports;
+    //private Set<ReportDto> reports;
 }

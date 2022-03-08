@@ -12,5 +12,5 @@ import java.util.UUID;
 public class ReportTypeRest {
     private Integer id;
     private String description;
-    private Set<ReportRest> reports;
+    //private Set<ReportRest> reports;
 }

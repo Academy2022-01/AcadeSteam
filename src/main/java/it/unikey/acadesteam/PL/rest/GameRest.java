@@ -16,8 +16,8 @@ public class GameRest {
     private String gameTitle;
     private String gamePath;
     private GameStateRest gameState;
-    private Set<ReportRest> reports;
-    private Set<LibraryRest> library;
     private UserInfoRest developer;
+    //private Set<ReportRest> reports;
+    //private Set<LibraryRest> library;
     //private Set<ReviewRest> reviews;
 }

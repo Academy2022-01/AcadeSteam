@@ -1,13 +1,9 @@
 package it.unikey.acadesteam.PL.rest;
 
-import it.unikey.acadesteam.DAL.entity.LibraryEntity;
-import it.unikey.acadesteam.DAL.entity.ReportEntity;
-import it.unikey.acadesteam.DAL.entity.UserEntity;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Set;
 
 @Data
 @RequiredArgsConstructor

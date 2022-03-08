@@ -25,9 +25,9 @@ public class RolesEntity {
     @Column(unique = true, nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
-    private Set<UserEntity> userEntitySet;
+    private Set<UserEntity> users;
 
     @Override
     public boolean equals(Object obj) {

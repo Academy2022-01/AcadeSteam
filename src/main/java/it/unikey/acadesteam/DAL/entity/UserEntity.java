@@ -33,13 +33,13 @@ public class UserEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    //@JoinColumn(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
     @ToString.Exclude
     private RolesEntity role;
 
     @OneToOne
-    //ù@JoinColumn(nullable = false)
+    @JoinColumn(nullable = false)
     private UserInfoEntity userInfo;
 
     @Override

@@ -28,6 +28,16 @@ public class UserInfoController {
         return new ResponseEntity<>(usersInfos.stream().map(mapper::fromDtoToRest).collect(Collectors.toList()), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    private ResponseEntity<UserInfoRest> getUserInfoById(@PathVariable("id") Integer id) {
+        try {
+            return new ResponseEntity<>(mapper.fromDtoToRest(service.getById(id)), HttpStatus.OK);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping
     private ResponseEntity<UserInfoRest> postUserInfo(@RequestBody UserInfoRest body){
         return new ResponseEntity<>(mapper.fromDtoToRest(service.insert(mapper.fromRestToDto(body))), HttpStatus.CREATED);

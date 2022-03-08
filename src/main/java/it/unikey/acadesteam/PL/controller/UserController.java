@@ -31,8 +31,9 @@ public class UserController {
         );
     }
 
-    @GetMapping(path = "/{id}")
-    private ResponseEntity<UserRest> findById(@PathVariable("id") Integer id) {
+    @GetMapping("/getById")
+    private ResponseEntity<UserRest> findById(
+            @RequestParam("id") Integer id) {
         try {
             UserDto dto = userService.getById(id);
             return new ResponseEntity<>(userRestMapper.fromUserDtoToUserRest(dto), HttpStatus.OK);
@@ -42,10 +43,9 @@ public class UserController {
         }
     }
 
-    @GetMapping(path = "/{username}") //username
+    @GetMapping("/getByUsername") //username
     private ResponseEntity<UserRest> findByUserName(
-            @RequestParam("username") String userName
-    ) {
+            @RequestParam("username") String userName) {
         try {
             UserDto dto = userService.findByUsername(userName);
             return new ResponseEntity<UserRest>(userRestMapper.fromUserDtoToUserRest(dto), HttpStatus.OK);
@@ -55,7 +55,7 @@ public class UserController {
         }
     }
 
-    @GetMapping(path = "/{email}")
+    @GetMapping("/getByEmail")
     private ResponseEntity<UserRest> findByEmail(
             @RequestParam("email") String email
     ) {
@@ -86,7 +86,7 @@ public class UserController {
         return new ResponseEntity<>(userRestMapper.fromUserDtoToUserRest(userDTO), HttpStatus.CREATED);
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping("/deleteById/{id}")
     private ResponseEntity<Void> deleteUserById(@PathVariable("id") Integer id) {
         try {
             userService.delete(id);
@@ -96,5 +96,4 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 }

@@ -14,24 +14,25 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService<UserDto> {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
     @Override
-    public UserDto insert(UserDto entity) {
-        UserEntity entityMapped = userMapper.fromUserDtotoUserEntity(entity);
-        UserEntity entitySaved = userRepository.save(entityMapped);
-        UserDto dtoSaved = userMapper.fromUserEntityToUserDto(entitySaved);
-        return dtoSaved;
+    public UserDto insert(UserDto userDto) {
+        return userMapper
+            .fromUserEntityToUserDto(userRepository
+                .save(userMapper
+                    .fromUserDtoToUserEntity(userDto)));
     }
 
     @Override
     public List<UserDto>getAll() {
         return userRepository.findAll()
-                .stream()
-                .map(userMapper::fromUserEntityToUserDto).collect(Collectors.toList());
+            .stream()
+                .map(userMapper::fromUserEntityToUserDto)
+                    .collect(Collectors.toList());
     }
 
 
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserService<UserDto> {
         if (!userRepository.existsById(entity.getId())){
             throw new NotFoundException("id");
         }
-        UserEntity userUpdated = userRepository.save(userMapper.fromUserDtotoUserEntity(entity));
+        UserEntity userUpdated = userRepository.save(userMapper.fromUserDtoToUserEntity(entity));
         return userMapper.fromUserEntityToUserDto(userUpdated);
     }
 

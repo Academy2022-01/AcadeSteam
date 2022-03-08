@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "/{roles}")
+@RequestMapping(path = "/roles")
 public class RolesController {
 
     private RolesRESTMapper rolesMapper;

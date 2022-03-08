@@ -1,5 +1,7 @@
 package it.unikey.acadesteam.PL.controller;
 
+import io.swagger.annotations.ApiResponse;
+import io.swagger.v3.oas.annotations.Operation;
 import it.unikey.acadesteam.BLL.dto.ReviewDto;
 import it.unikey.acadesteam.BLL.exception.NotFoundException;
 import it.unikey.acadesteam.BLL.service.impl.ReviewService;
@@ -65,6 +67,9 @@ public class ReviewController {
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Retrieve All Reviews")
+    @ApiResponse(code = 200, message = "Retrieve All Reviews", response = ReviewRest.class)
     private ResponseEntity<List<ReviewRest>> getAll(){
         List<ReviewRest> reviewList = reviewService
                 .getAll()
@@ -73,5 +78,4 @@ public class ReviewController {
                 .collect(Collectors.toList());
         return new ResponseEntity<>(reviewList,HttpStatus.OK);
     }
-
 }

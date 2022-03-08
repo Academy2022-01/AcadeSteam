@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService<UserDto> {
     @Override
     public void delete(Integer id) throws NotFoundException {
         if (!userRepository.existsById(id)) {
-            throw new NotFoundException(" not found in DB");
+            throw new NotFoundException("not found in DB");
         }
         userRepository.deleteById(id);
     }

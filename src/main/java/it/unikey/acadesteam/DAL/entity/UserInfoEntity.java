@@ -45,7 +45,7 @@ public class UserInfoEntity {
     @ToString.Exclude
     private Set<ReportEntity> reports;
 
-    @OneToOne(mappedBy = "userInfo")
+    @OneToOne(mappedBy = "userInfo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private UserEntity user;
 
     @Override

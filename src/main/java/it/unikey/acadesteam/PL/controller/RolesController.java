@@ -53,7 +53,7 @@ public class RolesController {
     @PostMapping
     private ResponseEntity<RolesRest> post(@RequestBody RolesRest roleRest) {
         RolesDto roleDto = mapper.fromRolesRestToRolesDto(roleRest);
-        return new ResponseEntity<>(mapper.fromRolesDtoToRolesRest(service.insert(roleDto)), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.fromRolesDtoToRolesRest(service.insert(roleDto)), HttpStatus.CREATED);
     }
 
     @DeleteMapping( path = "/{id}")

@@ -30,7 +30,7 @@ public class UserInfoController {
 
     @PostMapping
     private ResponseEntity<UserInfoRest> postUserInfo(@RequestBody UserInfoRest body){
-        return new ResponseEntity<>(mapper.fromDtoToRest(service.insert(mapper.fromRestToDto(body))), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.fromDtoToRest(service.insert(mapper.fromRestToDto(body))), HttpStatus.CREATED);
     }
 
     @PutMapping

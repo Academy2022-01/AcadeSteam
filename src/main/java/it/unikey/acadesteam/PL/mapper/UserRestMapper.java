@@ -6,6 +6,6 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface UserRestMapper {
-    UserRest fromUserDTOToUserRest(UserDto dto);
+    UserRest fromUserDtoToUserRest(UserDto dto);
     UserDto fromUserRestToUserDTO(UserRest rest);
 }
